@@ -71,7 +71,7 @@ const entities = [
     ],
   },
 ];
-class UserController {
+class EntityController {
   async getEntities(req, res, next) {
     try {
       return res.json(entities);
@@ -80,8 +80,33 @@ class UserController {
     }
   }
 
-  async addEntity(req, res, next) {
+  async createEntity(req, res, next) {
     try {
+      const {
+        nameOfCompany,
+        adress,
+        phone,
+        country,
+        typeOfCompany,
+        products,
+        description,
+        amountOfMpney,
+      } = req.body;
+
+      const entity = {
+        id: uuid(),
+        nameOfCompany,
+        adress,
+        phone,
+        country,
+        typeOfCompany,
+        products,
+        description,
+        amountOfMpney,
+      };
+      entities.push(entity);
+
+      return res.json(entity);
     } catch (err) {
       next(err);
     }
@@ -95,4 +120,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+module.exports = new EntityController();

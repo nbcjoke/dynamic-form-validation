@@ -3,9 +3,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "yup-phone";
 
-import styles from "./style.module.css";
+import { EntityService } from "../../services/entityService";
 import { Select } from "./select/select";
 import { Error } from "./error/error";
+
+import styles from "./style.module.css";
 
 export const Form = () => {
   const schema = yup.object().shape({
@@ -17,6 +19,7 @@ export const Form = () => {
     products: yup.array().of(
       yup.object().shape({
         name: yup.string(),
+        statusOfProject: yup.string(),
       })
     ),
     choise: yup.string().required("This field is required"),
@@ -39,7 +42,7 @@ export const Form = () => {
       phone: "",
       country: "",
       typeOfCompany: "",
-      products: [{ name: "" }],
+      products: [{ name: "", statusOfProject: "" }],
       //   choise: "",
       description: "",
       amountOfMoney: "",
@@ -54,6 +57,7 @@ export const Form = () => {
 
   const onSubmit = (data) => {
     console.log("data", data);
+    EntityService.createEntity(data);
   };
 
   const choiseType = watch("choise");
@@ -149,7 +153,7 @@ export const Form = () => {
                 />
                 <Select
                   options={status}
-                  control={register("statusOfProject")}
+                  control={register(`products.${index}.statusOfProject`)}
                 />
                 {index > 0 && (
                   <button type="button" onClick={() => remove(index)}>
