@@ -9,8 +9,9 @@ export const Table = ({ entities }) => {
     "phone",
     "country",
     "type of company",
-    "choise",
     "products",
+    "description",
+    "amount of money",
     "change",
   ];
 
@@ -36,14 +37,19 @@ export const Table = ({ entities }) => {
               <td className={styles.td}>{entity.phone}</td>
               <td className={styles.td}>{entity.country}</td>
               <td className={styles.td}>{entity.typeOfCompany}</td>
-              <td className={styles.td}>{entity.choise}</td>
               <td className={styles.td}>
-                {entity.products.map((product) => {
-                  return <p key={product.id}>{product.name}</p>;
+                {entity.products.map((product, index) => {
+                  return (
+                    <div key={index}>
+                      {product?.name} {product?.statusOfProject}
+                    </div>
+                  );
                 })}
               </td>
+              <td className={styles.td}>{entity.description}</td>
+              <td className={styles.td}>{entity.amountOfMoney}</td>
               <td className={styles.td}>
-                <Link to="/changeEntity">
+                <Link to={`/changeEntity/${entity.id}`}>
                   <button>Change</button>
                 </Link>
               </td>

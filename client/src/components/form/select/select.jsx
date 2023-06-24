@@ -1,6 +1,8 @@
+import styles from "./style.module.css";
+
 export const Select = ({ control, options }) => {
   return (
-    <select {...control}>
+    <select className={styles.select} {...control}>
       <option value="">Please choose an option</option>
       {options.map((option, index) => {
         return (

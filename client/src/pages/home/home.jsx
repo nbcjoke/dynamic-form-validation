@@ -21,7 +21,7 @@ export const Home = () => {
   return (
     <div>
       <h1 className={styles.title}>List of entities</h1>
-      <div>
+      <div className={styles.table_container}>
         <Table entities={entities} />
       </div>
       <Link to="/createEntity">

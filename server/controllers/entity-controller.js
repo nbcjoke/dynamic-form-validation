@@ -1,76 +1,7 @@
 const { v4: uuid } = require("uuid");
 
-const entities = [
-  {
-    id: uuid(),
-    nameOfCompany: "Itransition",
-    adress: "bla bla bla",
-    phone: "375 44 111 11 11",
-    country: "Belarus",
-    typeOfCompany: "grocery",
-    choise: "1",
-    products: [
-      {
-        id: uuid(),
-        name: "1",
-      },
-      {
-        id: uuid(),
-        name: "2",
-      },
-      {
-        id: uuid(),
-        name: "3",
-      },
-    ],
-  },
-  {
-    id: uuid(),
-    nameOfCompany: "Itransition",
-    adress: "bla bla bla",
-    phone: "375 44 111 11 11",
-    country: "Belarus",
-    typeOfCompany: "grocery",
-    choise: "1",
-    products: [
-      {
-        id: uuid(),
-        name: "1",
-      },
-      {
-        id: uuid(),
-        name: "2",
-      },
-      {
-        id: uuid(),
-        name: "3",
-      },
-    ],
-  },
-  {
-    id: uuid(),
-    nameOfCompany: "Itransition",
-    adress: "bla bla bla",
-    phone: "375 44 111 11 11",
-    country: "Belarus",
-    typeOfCompany: "grocery",
-    choise: "1",
-    products: [
-      {
-        id: uuid(),
-        name: "1",
-      },
-      {
-        id: uuid(),
-        name: "2",
-      },
-      {
-        id: uuid(),
-        name: "3",
-      },
-    ],
-  },
-];
+const entities = require("../mocks/entities");
+
 class EntityController {
   async getEntities(req, res, next) {
     try {
@@ -82,28 +13,7 @@ class EntityController {
 
   async createEntity(req, res, next) {
     try {
-      const {
-        nameOfCompany,
-        adress,
-        phone,
-        country,
-        typeOfCompany,
-        products,
-        description,
-        amountOfMpney,
-      } = req.body;
-
-      const entity = {
-        id: uuid(),
-        nameOfCompany,
-        adress,
-        phone,
-        country,
-        typeOfCompany,
-        products,
-        description,
-        amountOfMpney,
-      };
+      const entity = { id: uuid(), ...req.body };
       entities.push(entity);
 
       return res.json(entity);
@@ -114,6 +24,26 @@ class EntityController {
 
   async changeEntity(req, res, next) {
     try {
+      const entity = req.body;
+
+      const index = entities.findIndex(({ id }) => id === entity.id);
+
+      if (index >= 0) {
+        entities.splice(index, 1, { ...entities[index], ...entity });
+      }
+
+      return res.json(entity);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async getEntity(req, res, next) {
+    try {
+      const { entityId } = req.query;
+
+      const entity = entities.find((item) => item.id === entityId);
+      return res.json(entity);
     } catch (err) {
       next(err);
     }

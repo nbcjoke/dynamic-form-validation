@@ -3,12 +3,14 @@
   border-collapse: collapse;
   padding: 5px;
 }
+
 .th {
   border: 1px solid #b3adad;
   padding: 5px;
   background: #f0f0f0;
   color: #313030;
 }
+
 .td {
   border: 1px solid #b3adad;
   text-align: center;
