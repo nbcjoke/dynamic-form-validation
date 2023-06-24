@@ -196,6 +196,7 @@ export const Form = ({ entity }) => {
                   placeholder="product name"
                   {...register(`products.${index}.name`)}
                 />
+                <Error errors={errors.products?.[index]?.name} />
                 <Select
                   options={status}
                   control={register(`products.${index}.statusOfProject`)}
