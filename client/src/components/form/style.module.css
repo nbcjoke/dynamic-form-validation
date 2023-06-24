@@ -1,0 +1,48 @@
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.error {
+  color: red;
+  margin: 0;
+}
+
+.select_container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dynamic_field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add_button {
+  display: flex;
+  margin: 0 auto;
+}
+
+.input {
+  display: block;
+  box-sizing: border-box;
+  width: 400px;
+  border-radius: 4px;
+  border: 1px solid black;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.radio_container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}

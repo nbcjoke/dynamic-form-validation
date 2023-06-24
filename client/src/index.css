@@ -1,3 +1,31 @@
 body {
   margin: 0;
+  background: rgb(3, 6, 37);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+label,
+p {
+  font-size: 18px;
+}
+
+p {
+  margin: 0;
+}
+
+label,
+h1,
+p {
+  color: white;
+}
+
+button {
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 10px 15px;
 }
